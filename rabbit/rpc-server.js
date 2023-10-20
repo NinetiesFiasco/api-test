@@ -1,7 +1,6 @@
 const amqp = require('amqplib')
 
 const RABBIT_MQ_URL =  'amqp://rabbitmq'
-console.log(RABBIT_MQ_URL)
 const RPC_QUEUE = 'rpc_queue'
 
 module.exports = async function() {

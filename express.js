@@ -1,16 +1,8 @@
 const express = require('express')
-const startRabbitMQserver = require('./rabbit/rpc-server.js')
-  // const rabbitReceive = require('./rabbit/rabbit-receive.js')
-// const rabbitSend = require('./rabbit/rabbit-send.js')
+const {rpcServer} = require('./rabbit')
 
 const app = express()
 const port = process.env.PORT || 3502
-
-
-// rabbitReceive('my-que', (msg) => {
-//   console.log(`tuta 2: ${msg.content.toString()}`)
-//   //rabbitSend('my-que-back', `${msg.content.toString()} + Express 2 part`)
-// })
 
 app.get('/', (req, res) => {
   try {
@@ -32,7 +24,7 @@ app.listen(port, async () => {
   console.log(`Example app listening on port ${port}`)
   try {
     console.log('amqp://rabbitmq')
-    await startRabbitMQserver()
+    await rpcServer()
     console.log('RabbitMQ launched')
   } catch (err) {
     console.log(`Something going wrong with RabbitMQ: ${err}`)
