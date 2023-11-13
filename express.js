@@ -1,8 +1,8 @@
 const express = require('express')
-const {rpcServer} = require('./rabbit')
+const { rpcServer } = require('./rabbit')
 
 const app = express()
-const port = process.env.PORT || 3502
+const PORT = process.env.PORT || 3502
 
 app.get('/', (req, res) => {
   try {
@@ -20,10 +20,9 @@ app.get('/axios', (req, res) => {
   }
 })
 
-app.listen(port, async () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(PORT, async () => {
+  console.log(`Example app listening on port ${PORT} environment: ${process.env.NODE_ENV}`)
   try {
-    console.log('amqp://rabbitmq')
     await rpcServer()
     console.log('RabbitMQ launched')
   } catch (err) {
